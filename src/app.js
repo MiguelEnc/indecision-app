@@ -9,6 +9,7 @@ class IndecisionApp extends React.Component {
         <Header title={title} subtitle={subtitle} />
         <Action />
         <Options options={options} />
+        <AddOption />
       </div>
     );
   }
@@ -81,3 +82,30 @@ class Option extends React.Component {
     );
   }
 }
+
+class AddOption extends React.Component {
+  onFormSubmit(e) {
+    e.preventDefault();
+    
+    let option = e.target.elements.option.value.trim();
+    if (option) {
+      
+    }
+  }
+  
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.onFormSubmit}>
+          <input type="text" name="option" />
+          <button>Add option</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <IndecisionApp />, 
+  document.getElementById("app")
+);
