@@ -6,10 +6,12 @@ class IndecisionApp extends React.Component {
     return (
       <div>
         <Header title={title} subtitle={subtitle} />
+        <Action />
       </div>
     );
   }
 }
+
 
 class Header extends React.Component {
   render() {
@@ -22,3 +24,22 @@ class Header extends React.Component {
  }
 }
 
+
+class Action extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handlePick = this.handlePick.bind(this);
+  }
+  
+  handlePick() {
+    
+  }
+  
+  render() {
+    return (
+      <div>
+        <button onclick={this.handlePick}>Choose an option</button>
+      </div>
+    );
+  }
+}
