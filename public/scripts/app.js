@@ -22,6 +22,7 @@ var IndecisionApp = function (_React$Component) {
       options: ['Option 1', 'Option 2', 'Option 3']
     };
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
+    _this.handlePick = _this.handlePick.bind(_this);
     return _this;
   }
 
@@ -35,6 +36,12 @@ var IndecisionApp = function (_React$Component) {
       });
     }
   }, {
+    key: 'handlePick',
+    value: function handlePick() {
+      var selectedOption = Math.floor(Math.random() * this.state.options.length);
+      alert(this.state.options[selectedOption]);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var title = "Indecision App";
@@ -44,7 +51,10 @@ var IndecisionApp = function (_React$Component) {
         'div',
         null,
         React.createElement(Header, { title: title, subtitle: subtitle }),
-        React.createElement(Action, null),
+        React.createElement(Action, {
+          hasOptions: this.state.options.length > 0,
+          handlePick: this.handlePick
+        }),
         React.createElement(Options, {
           options: this.state.options,
           handleDeleteOptions: this.handleDeleteOptions
@@ -92,19 +102,13 @@ var Header = function (_React$Component2) {
 var Action = function (_React$Component3) {
   _inherits(Action, _React$Component3);
 
-  function Action(props) {
+  function Action() {
     _classCallCheck(this, Action);
 
-    var _this3 = _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).call(this, props));
-
-    _this3.handlePick = _this3.handlePick.bind(_this3);
-    return _this3;
+    return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
   }
 
   _createClass(Action, [{
-    key: 'handlePick',
-    value: function handlePick() {}
-  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -112,7 +116,9 @@ var Action = function (_React$Component3) {
         null,
         React.createElement(
           'button',
-          { onclick: this.handlePick },
+          {
+            onClick: this.props.handlePick,
+            disabled: !this.props.hasOptions },
           'Choose an option'
         )
       );
