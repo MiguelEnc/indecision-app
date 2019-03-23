@@ -1,14 +1,34 @@
+/*global React, ReactDOM */
+
 class IndecisionApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      options: ['Option 1', 'Option 2', 'Option 3']
+    };
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+  }
+  
+  handleDeleteOptions() {
+    this.setState(() => {
+      return {
+        options: []
+      }
+    });
+  }
+  
   render() {
     const title = "Indecision App";
-    const subtitle = "Put your life in the hands of a computer";
-    const options = ['Option 1', 'Option 2', 'Option 3'];
+    const subtitle = "I'll choose for you!";
     
     return (
       <div>
         <Header title={title} subtitle={subtitle} />
         <Action />
-        <Options options={options} />
+        <Options 
+          options={this.state.options} 
+          handleDeleteOptions={this.handleDeleteOptions}
+        />
         <AddOption />
       </div>
     );
@@ -49,22 +69,13 @@ class Action extends React.Component {
 
 
 class Options extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleRemoveAll = this.handleRemoveAll.bind(this);
-  }
-  
-  handleRemoveAll() {
-    
-  }
-  
   render() {
     return (
       <div>
-        <button onclick={this.handleRemoveAll}>Remove All</button>
+        <button onClick={this.props.handleDeleteOptions}>Remove All</button>
         {
           this.props.options.map((option) => {
-            <Option key={option} text={option} />
+            return <Option key={option} text={option} />
           })
         }
       </div>
@@ -82,6 +93,7 @@ class Option extends React.Component {
     );
   }
 }
+
 
 class AddOption extends React.Component {
   onFormSubmit(e) {
@@ -104,6 +116,7 @@ class AddOption extends React.Component {
     );
   }
 }
+
 
 ReactDOM.render(
   <IndecisionApp />, 
