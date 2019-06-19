@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "An app for decision making",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MiguelEnc/indecision-app.git"
@@ -19,11 +16,24 @@
     "url": "https://github.com/MiguelEnc/indecision-app/issues"
   },
   "homepage": "https://github.com/MiguelEnc/indecision-app#readme",
-  "dependencies": {},
-  "devDependencies": {
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react",
+    "server": "live-server public",
+    "build": "webpack --watch"
+  },
+  "dependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "live-server": "^1.2.1"
+    "live-server": "^1.2.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.34.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.4"
   }
 }
