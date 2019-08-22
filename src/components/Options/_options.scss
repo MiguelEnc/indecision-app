@@ -1,0 +1,24 @@
+.options-header {
+    background: $blue;
+    color: $off-white;
+    padding: $m-size;
+    display: flex;
+    justify-content: space-between;
+}
+
+.options-header__title {
+    margin: 0;
+}
+
+.options-container {
+    background: $light-blue;
+    margin-bottom: $xl-size;
+}
+
+.options-message {
+    border-bottom: 1px solid lighten($light-blue, 10%);
+    color: $off-white;
+    margin: 0;
+    padding: $l-size;
+    text-align: center;
+}

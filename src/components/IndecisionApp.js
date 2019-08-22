@@ -1,10 +1,10 @@
 /*global React, ReactDOM, localStorage */
 import React from 'react';
-import AddOption from './AddOption';
-import Options from './Options';
-import Header from './Header';
+import AddOption from './AddOption/AddOption';
+import Options from './Options/Options';
+import Header from './Header/Header';
 import Action from './Action';
-import OptionModal from './OptionModal';
+import OptionModal from './OptionModal/OptionModal';
 
 export default class IndecisionApp extends React.Component {
   constructor(props) {
@@ -90,18 +90,22 @@ export default class IndecisionApp extends React.Component {
     return (
       <div>
         <Header subtitle={subtitle} />
-        <Action 
-          hasOptions={this.state.options.length > 0} 
-          handlePick={this.handlePick}
-        />
-        <Options 
-          options={this.state.options} 
-          handleDeleteOptions={this.handleDeleteOptions}
-          handleDeleteOption={this.handleDeleteOption}
-        />
-        <AddOption 
-          handleAddOption={this.handleAddOption}
-        />
+        <div className="container">
+          <Action 
+            hasOptions={this.state.options.length > 0} 
+            handlePick={this.handlePick}
+          />
+          <div className="options-container">
+            <Options 
+              options={this.state.options} 
+              handleDeleteOptions={this.handleDeleteOptions}
+              handleDeleteOption={this.handleDeleteOption}
+            />
+            <AddOption 
+              handleAddOption={this.handleAddOption}
+            />
+          </div>
+        </div>
         <OptionModal 
           selectedOption={this.state.selectedOption}
           closeModal={this.handleResetSelectedOption} />
